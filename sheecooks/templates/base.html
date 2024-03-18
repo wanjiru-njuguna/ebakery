@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  {% block title %}<title></title>{% endblock %}
+  {% block static%}<link>{%endblock%}
+  <script src="https://kit.fontawesome.com/c0de917e91.js" crossorigin="anonymous"></script>
+
+  {% load static %}
+ 
+  <div>
+    
+    <i class="fa-solid fa-bars"></i>
+    <h4>Sheeroh Foods</h4>
+    <i class="fa-solid fa-truck">Free delivery</i>
+    <i class="fa-solid fa-magnifying-glass"><input placeholder="search foods"></input>
+    </i>
+    <i class="fa-solid fa-cart-shopping">Add to Cart</i>
+   
+  
+</div>     
+    
+</head>
+
+<body>
+  <main>
+    {% block content%}
+    {% endblock %}
+    
+  </main>
+</body>
+
+</html>
