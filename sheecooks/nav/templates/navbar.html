@@ -1,9 +1,14 @@
 {% extends "base.html" %}
-{% block title %}<title>Navbar</title>{% endblock %}
-{% load nav_extras %}
+{% load static %}
 
-{% block static %}<link rel="stylesheet" href="{% static 'style.css' %}">{% endblock %}
+{% block extrahead %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+{% endblock %}
+
+{% block title %}<title>Navbar</title>{% endblock %}
+
 
 {% block content %}
-<p>This is another attempt at templates</p>
+<p>This is another attempt at templates. I want it to be green.</p>
+<h3>Navbar</h3>
 {% endblock %}

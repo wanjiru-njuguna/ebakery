@@ -1,22 +1,36 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 
 <head>
+  <link rel="stylesheet" href="{% static 'base.css' %}">
+  {% block extrahead %}{% endblock %}
   <meta charset="utf-8">
   {% block title %}<title></title>{% endblock %}
-  {% block static%}<link>{%endblock%}
   <script src="https://kit.fontawesome.com/c0de917e91.js" crossorigin="anonymous"></script>
-
-  {% load static %}
  
-  <div>
+  <div class="top_bar">
     
     <i class="fa-solid fa-bars"></i>
-    <h4>Sheeroh Foods</h4>
+    <span>Sheeroh Foods</span>
     <i class="fa-solid fa-truck">Free delivery</i>
     <i class="fa-solid fa-magnifying-glass"><input placeholder="search foods"></input>
     </i>
-    <i class="fa-solid fa-cart-shopping">Add to Cart</i>
+    <i class="fa-solid fa-cart-shopping"Cart></i>
+  {% block authentication %}
+    {% if user.is_authenticated %}
+      <i class="fa fa-user" aria-hidden="true"> {{ user.username}} 
+      </i>
+      <p><a href="{% url 'password_change'%}">password change</a></p>
+      <form action="{% url 'logout' %}" method="post">
+          {% csrf_token %}
+        <button type="submit">Log Out</button>
+      </form>
+    {% else %}
+     <p><a href="{% url 'login' %}">Log In</a></p>
+     {% endif %}
+
+  {% endblock %}
    
   
 </div>     
