@@ -17,7 +17,7 @@
         },
         {
             "name": "sheecooks (Xfrozen=off)",
-            "type": "python",
+            "type": "debugpy",
             "python": "/Users/wanjiru/Documents/erestuarant/sheecooks/.venv/bin/python3",
             "request": "launch",
             "program": "/Users/wanjiru/Documents/erestuarant/sheecooks/manage.py",

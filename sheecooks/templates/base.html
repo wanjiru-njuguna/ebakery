@@ -4,16 +4,25 @@
 
 <head>
   <link rel="stylesheet" href="{% static 'base.css' %}">
-  {% block extrahead %}{% endblock %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  {% block extrahead %}
+  {% endblock %}
   <meta charset="utf-8">
   {% block title %}<title></title>{% endblock %}
+  
   <script src="https://kit.fontawesome.com/c0de917e91.js" crossorigin="anonymous"></script>
  
   <div class="top_bar">
     
     <i class="fa-solid fa-bars"></i>
     <span>Sheeroh Foods</span>
-    <i class="fa-solid fa-truck">Free delivery</i>
+    <i class="fa-solid fa-truck"><span>Free delivery</span></i>
     <i class="fa-solid fa-magnifying-glass"><input placeholder="search foods"></input>
     </i>
     <i class="fa-solid fa-cart-shopping"Cart></i>
@@ -39,10 +48,62 @@
 
 <body>
   <main>
-    {% block content%}
-    {% endblock %}
+    <div class="splice_cover">
+      {% block splice%}
+        <div class="owl-carousel owl-theme"></div>
+
+      {% endblock %}
+
+    </div>
+      
+
+    <div class="toppicks">
+      {% block toppicks%}
+      {% endblock %}
+    </div>
     
-  </main>
+    <div class="main_menu">
+      {% block menu%}
+      {% endblock %}
+    </div>
+
+    <div class="footer">
+    {% block btfooter%}
+        <div class="ways_to_order">
+          <h3>How to order</h3>
+            <p>Order Online</p>
+            <p><i class="fa-solid fa-phone"></i> Call 084-903456</p>
+            <p>Dm on our socials</p>
+            <span class="social_icons">
+              <i class="fa-brands fa-instagram" style="margin: 1em 1em;" ></i>
+              <i class="fa-solid fa-envelope" style="margin: 1em 1em;"></i>
+              <i class="fa-brands fa-facebook" style="margin: 1em 1em;"></i>
+              <i class="fa-brands fa-twitter" style="margin: 1em 1em;"></i>
+            </span>
+        </div>
+
+        <div class="locations">
+          <h3>Locations</h3>
+          <p>Nairobi</p>
+          <p>Nyahururu</p>
+          <p>Seattle</p>
+        </div>
+
+        <div class="Newsletter">
+          <h3><i class="fa-solid fa-envelope"></i> SignUp to Our Newsletter</h3>
+        </div>
+
+    {% endblock %}
+      
+    </div>
+    
+    
+  </main>  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="{%  static 'splice.js' %}">
+    
+  </script>
+
 </body>
 
 </html>

@@ -20,6 +20,14 @@
 <p>You are not logged in</p>
 <p><a href="{% url 'password_reset' %}">Password Reset</a></p>
 <p><a href="{% url 'login' %}">Log In</a></p>
-<p>I hope you are ok</p>
 {% endif %}
+{% endblock %}
+{% block splice%}
+<p>This is the homepage</p>
+<ul>
+{% for food in foodlist %}
+    <li>{{food.product_name}} {{food.photo}}</li>
+{% endfor %}
+</ul>
+
 {% endblock %}

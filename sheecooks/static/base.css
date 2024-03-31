@@ -4,14 +4,24 @@ body {
     padding: 0;
   }
 P{
-    color: blue;
+    color: black;
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+}
+.footer p{
+    color: white;
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+
 }
 
 .top_bar{
     color: white;
     background-color: #256D85;
     width: 100%;
-    height: 5em;
+    height: 3%;
     display: flex;
     flex-direction: row;
     margin: 0;
@@ -19,4 +29,81 @@ P{
     padding-top: 2%;
     align-content: space-between;
     justify-content: space-around;
+}
+.splice_cover{
+    height: 35em;
+}
+.item{
+    height: 35em;
+    width: 100%;
+
+}
+
+.owl-carousel .owl-item img{
+    max-width: auto;
+    max-height: 94%;
+    width: auto;
+    height: auto;
+    overflow: auto;
+    padding: 0;
+    margin: 0;
+}
+.splice_des_paragraph{
+    margin: 0.5em 0.5em;
+}
+.toppicks{
+    color: white;
+    width: 100%;
+    height: 30%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 2.5em;
+    margin-bottom: 0.5em;
+    vertical-align: middle;
+    padding-top: 2%;
+    align-content: space-between;
+    align-items: stretch;
+    justify-content: space-evenly;
+}
+.toppick_item{
+
+}
+.add_to_cart{
+    margin-top: 0;
+    margin-bottom: 2em;
+}
+.main_menu{
+    color: white;
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0;
+    vertical-align: middle;
+    padding-top: 2%;
+    align-content: space-between;
+    justify-content: space-evenly;
+}
+.footer{
+    background-color: #256D85;
+    color: white;
+    width: 100%;
+    height: 25em;
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    vertical-align: middle;
+    padding-top: 2%;
+    justify-content: space-evenly;
+
+    
+}
+.ways_to_order{
+    margin-left: 1em;
+}
+
+.social_icons{
+    margin: 2em 2em;
 }

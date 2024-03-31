@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extrahead %}
+    
+{% endblock %}
+
+<body>
+    <main>
+        {% block splice%}
+            <div class="owl-carousel owl-theme">
+                {% for splice in splice_images %}
+                    <div class="item">
+                        <img src="{{ splice.splice_photo.url }}" alt="{{splice.splice_description }}">
+                        <p class="splice_des_paragraph">{{splice.splice_description}}</p>
+                    </div>                 
+                {% endfor %} 
+            </div>
+        {% endblock %}
+
+        {% block toppicks%}
+        
+            {% for pick in Top_food_picks %}
+            <div class="toppick_item">
+                <img src="{{ pick.pick_photo.url }}" alt="{{pick.pick_description }}" width="250px" height="250px">
+                <span>
+                    <p> {{pick.pick_description }} </p>
+                    <p>$ {{pick.pick_price}}</p>
+                    <button class="add_to_cart">Add to Cart</button>
+
+                </span>
+            </div>
+            {% endfor %}
+            </ul>
+        
+        {% endblock %}
+        
+        {% block menu%}
+
+        {% for food in food_list %}
+            <div> 
+                <img src="{{ food.photo.url }}" alt="{{food.product_name}}" width="250px" height="250px">
+                <span>
+                    <p> {{food.product_name}} </p>
+                    <p>$ {{food.product_selling_price}}</p>
+                    <button class="add_to_cart">Add to Cart</button>
+                </span>
+            </div>
+        {% endfor %}
+        </ul>
+        
+        {% endblock %}
+        
+        
+    </main>
+    
+
+</body>
