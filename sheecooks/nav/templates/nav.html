@@ -21,10 +21,17 @@
         
             {% for pick in Top_food_picks %}
             <div class="toppick_item">
-                <img src="{{ pick.pick_photo.url }}" alt="{{pick.pick_description }}" width="250px" height="250px">
+                <a href="/toppick?id={{pick.id}}">
+                    <img src="{{ pick.pick_photo.url }}" alt="{{pick.pick_description }}" width="250px" height="250px">
+                </a>
+                
                 <span>
-                    <p> {{pick.pick_description }} </p>
-                    <p>$ {{pick.pick_price}}</p>
+                    <a href="/toppick?id={{pick.id}}">
+                        <p> {{pick.pick_description }} </p>
+                    </a>
+                    <a href="/toppick?id={{pick.id}}">
+                        <p>$ {{pick.pick_price}}</p>
+                    </a>
                     <button class="add_to_cart">Add to Cart</button>
 
                 </span>
@@ -38,12 +45,19 @@
 
         {% for food in food_list %}
             <div> 
-                <img src="{{ food.photo.url }}" alt="{{food.product_name}}" width="250px" height="250px">
-                <span>
-                    <p> {{food.product_name}} </p>
-                    <p>$ {{food.product_selling_price}}</p>
+                <a href="/product_details?product_serial_no={{food.product_serial_no}}">
+                    <img src="{{ food.photo.url }}" alt="{{food.product_name}}" width="250px" height="250px">
+                </a>
+                <div>
+                    <a href="product_details?product_serial_no={{food.product_serial_no}}">
+                        <p> {{food.product_name}} </p>
+                    </a>
+                    <a href="product_details?product_serial_no={{food.product_serial_no}}">
+                        <p>$ {{food.product_selling_price}}</p>
+                    </a>
+
                     <button class="add_to_cart">Add to Cart</button>
-                </span>
+                </div>
             </div>
         {% endfor %}
         </ul>

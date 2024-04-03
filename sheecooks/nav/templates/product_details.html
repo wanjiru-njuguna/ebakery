@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extrahead %}
+    
+{% endblock %}
+
+<body>
+    <main>
+            {% block splice %}
+                <div class="menu_display">
+                    <img src="{{food.photo.url}}" width="400px" height="400px"/>
+                    <p>{{food.product_name}}</p>
+                    <p>$ {{food.product_selling_price}}</p>
+                    <button class="pick_add_to_cart">Add to Cart</button> <br>
+                    <button class="buy_now">Buy Now</button>
+
+                </div>
+            {% endblock %} 
+    
+    </main>
+</body>

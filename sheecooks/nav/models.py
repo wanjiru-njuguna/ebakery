@@ -43,6 +43,7 @@ class Splice_display(models.Model):
        return self.splice_description
 
 class Toppicks(models.Model):
+    id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
     pick_description = models.CharField(max_length = 50)
     pick_photo = models.ImageField(upload_to='images/')
     pick_price = models.DecimalField(max_digits=20, decimal_places=2,blank= False)

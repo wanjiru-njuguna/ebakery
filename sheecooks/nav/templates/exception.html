@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extrahead %}
+    
+{% endblock %}
+
+<body>
+    <main>
+            {% block splice %}
+                <div class="exception_handler">
+                    <i class="fa-solid fa-face-sad-cry"></i>
+                    <h2> Sorry this product is not found!</h2>
+                    <a href="/">See Our Catalog?</a>
+                </div>
+            {% endblock %} 
+    
+    </main>
+</body>

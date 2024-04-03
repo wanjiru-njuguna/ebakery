@@ -8,12 +8,24 @@ P{
     font-family: "Roboto", sans-serif;
     font-weight: 900;
     font-style: normal;
+    margin: 0.4em;
 }
+a{
+    text-decoration: none;
+}
+a p:hover {
+    color: red;
+  }
+/*a:-webkit-any-link
+{
+    color: blue;
+}*/
 .footer p{
     color: white;
     font-family: "Roboto", sans-serif;
     font-weight: 900;
     font-style: normal;
+    margin: 0.3em;
 
 }
 
@@ -106,4 +118,21 @@ P{
 
 .social_icons{
     margin: 2em 2em;
+}
+.pick_display{
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh;
+    flex-direction: column;
+}
+.pick_add_to_cart{
+    margin-bottom: 0.3em;
+}
+.menu_display{
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh;
+    flex-direction: column;
 }
