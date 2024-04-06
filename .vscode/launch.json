@@ -5,29 +5,50 @@
     "version": "0.2.0",
     "configurations": [
 
+        // {
+        //     "name": "Python Debugger: Django",
+        //     "type": "debugpy",
+        //     "request": "launch",
+        //     "program": "${workspaceFolder}/manage.py",
+        //     "args": [
+        //         "runserver"
+        //     ],
+        //     "django": true
+        // },
+        // {
+        //     "name": "sheecooks (Xfrozen=off)",
+        //     "type": "debugpy",
+        //     "python": "/Users/wanjiru/Documents/erestuarant/sheecooks/.venv/bin/python3",
+        //     "request": "launch",
+        //     "program": "/Users/wanjiru/Documents/erestuarant/sheecooks/manage.py",
+        //     "console": "internalConsole",
+        //     "args": [
+        //         "runserver",
+        //         "--noreload"
+        //     ],
+        //     "pythonArgs": ["-Xfrozen_modules=off"],
+        //     "django": true,
+        //     "justMyCode": false,
+        // },
+
         {
-            "name": "Python Debugger: Django",
-            "type": "debugpy",
+            "name": "Django",
+            "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/manage.py",
-            "args": [
-                "runserver"
-            ],
-            "django": true
-        },
-        {
-            "name": "sheecooks (Xfrozen=off)",
-            "type": "debugpy",
-            "python": "/Users/wanjiru/Documents/erestuarant/sheecooks/.venv/bin/python3",
-            "request": "launch",
+            "stopOnEntry": false,
+            "pythonPath": "/Users/wanjiru/Documents/erestuarant/sheecooks/.venv/bin/python3",
             "program": "/Users/wanjiru/Documents/erestuarant/sheecooks/manage.py",
-            "console": "internalConsole",
             "args": [
-                "runserver"
+                "runserver",
+                "--no-color",
+                "--noreload"
             ],
-            "pythonArgs": ["-Xfrozen_modules=off"],
-            "django": true,
-            "justMyCode": false,
+            "debugOptions": [
+                "WaitOnAbnormalExit",
+                "WaitOnNormalExit",
+                "RedirectOutput",
+                "DjangoDebugging"
+            ]
         }
     ]
 }

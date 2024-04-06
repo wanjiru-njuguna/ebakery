@@ -25,7 +25,10 @@
     <i class="fa-solid fa-truck"><span>Free delivery</span></i>
     <i class="fa-solid fa-magnifying-glass"><input placeholder="search foods"></input>
     </i>
-    <i class="fa-solid fa-cart-shopping"Cart></i>
+    <a>
+      <i class="fa-solid fa-cart-shopping"Cart>{{total_cartitems}}</i>
+
+    </a>
   {% block authentication %}
     {% if user.is_authenticated %}
       <i class="fa fa-user" aria-hidden="true"> {{ user.username}} 
@@ -58,6 +61,8 @@
    
     <div class="toppicks">
       {% block toppicks%}
+
+       
       {% endblock %}
     </div>
     

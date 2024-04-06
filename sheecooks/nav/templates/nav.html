@@ -1,8 +1,5 @@
 {% extends "base.html" %}
 {% load static %}
-{% block extrahead %}
-    
-{% endblock %}
 
 <body>
     <main>
@@ -32,7 +29,15 @@
                     <a href="/toppick?id={{pick.id}}">
                         <p>$ {{pick.pick_price}}</p>
                     </a>
-                    <button class="add_to_cart">Add to Cart</button>
+                    <form method="post" action="{% url 'add_toppick_tocart' %}">
+
+                        {% csrf_token %}
+                        <input type="hidden" name="pick_id" value="{{ pick.id}}">
+                        <input type="hidden" name="pick_name" value="{{pick.pick_description}}">
+                        <input type="hidden" name="quantity" value="1">
+                        <button type="submit" class="add_to_cart">Add to Cart</button>
+
+                    </form>
 
                 </span>
             </div>
@@ -56,7 +61,16 @@
                         <p>$ {{food.product_selling_price}}</p>
                     </a>
 
-                    <button class="add_to_cart">Add to Cart</button>
+                    <form method="post" action="{% url 'add_menu_tocart' %}">
+
+                        {% csrf_token %}
+                        <input type="hidden" name="food_id" value="{{food.product_serial_no}}">
+                        <input type="hidden" name="food_name" value="{{food.product_name}}">
+                        <input type="hidden" name="quantity" value="1">
+                        <button type="submit" class="add_to_cart">Add to Cart</button>
+
+                    </form>
+
                 </div>
             </div>
         {% endfor %}

@@ -18,6 +18,8 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import include, path
+from nav.views import total_cartitems
+
 
 #from django.views.generic.base import TemplateView
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
@@ -26,6 +28,7 @@ urlpatterns = [
     path("accounts/", include("accounts.urls")),
     path("accounts/", include("django.contrib.auth.urls")), 
     path("__reload__/", include("django_browser_reload.urls")),
+    path('base/', total_cartitems, name='base_template_view'),
     #path("", TemplateView.as_view(template_name = "home.html"), name = "home"),
     path('', include("nav.urls")),
     #path('profile', views.profile, name='profile'),
