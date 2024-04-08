@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extrahead %}
+    
+{% endblock %}
+
+<body>
+    <main>
+            {% block splice %}
+                <div class="Cart_display">
+                    <h3>Your cart Items</h3>
+                    <div class="header_span">
+                        <span class="price_span">Price</span>
+
+                    </div>
+                    <div class="checkout_div">
+                        <p>Total ( Items)</p>
+                        <a href="checkout.html">
+                            <button class="Proceed_To_Checkout">Proceed To Checkout</button>
+                        </a>
+                    </div>
+                    {% for item in toppicks_in_cart %}
+                        <div class="cart_item_display">
+                            <img src="{{item.toppick_cart_product.pick_photo.url}}" width="200px" height="200px"/>
+                            <p>{{item.toppick_cart_product.pick_description}}</p>
+                            <div class="cart_price">
+                                <p>${{item.toppick_cart_product.pick_price}}</p>
+                            </div>
+                        </div>
+                        
+
+                    {% endfor %}
+                    {% for item in menu_items_in_cart %}
+                        <div class="cart_item_display">
+                            <img src="{{item.menu_product_id.photo.url}}" width="200px" height="200px"/>
+                            <p>{{item.menu_product_id.product_name}}</p>
+                            <p>${{item.menu_product_id.product_selling_price}}</p>
+                        </div>
+                       
+
+                    {% endfor %}
+                </div>
+            {% endblock %} 
+    
+    </main>
+</body>

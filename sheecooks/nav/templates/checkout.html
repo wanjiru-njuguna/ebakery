@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extrahead %}
+    
+{% endblock %}
+
+<body>
+    <main>
+            {% block splice %}
+                <div class="exception_handler">
+                    <p>Add a Credit or Debit Card</p>
+                    <form>
+                        <input type="number" value="Card Number">
+                        <input type="text" value="Name on Card">
+                        <input type="month" value="expiry Month"> <input type="date">
+                        <input type="password" value="CVV / CVC">
+                    </form>
+                    
+                </div>
+            {% endblock %} 
+    
+    </main>
+</body>

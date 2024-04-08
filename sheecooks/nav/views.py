@@ -4,7 +4,7 @@ from django.template import loader
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.contrib import messages
-from .models import Product, Splice_display, Toppicks, CartItems
+from .models import Product, Splice_display, Toppicks, CartItems_menu,CartItems_toppick
 
 # Create your views here.
 def nav (request):
@@ -65,26 +65,20 @@ def toppick(request):
 #function to add items to cart when the add to cart button is clicked on the toppick items. The user needs to be logged in to add items to cart, hence the @loginrequired decorater.
 
 @login_required
-
-def CartItem_toppick (request):
+def toppick_cart(request):
 
     if request.method == 'POST':
-        Toppicks_cart = Toppicks.objects.all()
         toppick_id = request.POST.get('pick_id')
-        toppick_name = request.POST.get ('pick_name')
-        #toppick_name = Toppicks.objects.get(id = toppick_id )
-        toppick_quantity = request.POST.get ('quantity')
-        #template = loader.get_template("toppick.html")
-
+        toppick_name = request.POST.get('pick_name')
+        toppick_quantity = request.POST.get('quantity')
         try:
             toppick_product_id = Toppicks.objects.get(id=toppick_id)
 
         except Toppicks.DoesNotExist:
             return redirect('add_toppick_tocart')  
-
-        #tpn = toppick_name.pick_description
-        cart_item = CartItems (user_id = request.user, toppick_product_id = toppick_product_id, quantity = toppick_quantity)
-        cart_item.save()
+        
+        toppick_cart_item = CartItems_toppick (cart_owner = request.user, toppick_cart_product = toppick_product_id, quantity = toppick_quantity)
+        toppick_cart_item.save()
         messages.success(request, 'Item added to cart.')
         return HttpResponseRedirect ("/")
 
@@ -103,7 +97,7 @@ def CartItem_menu (request):
         except Product.DoesNotExist:
             return redirect('add_menu_tocart')
 
-        menucart_item = CartItems (user_id = request.user, menu_pick = menu_item, quantity = quantity)
+        menucart_item = CartItems_menu (user_id = request.user, menu_product_id = menu_item, quantity = quantity)
         menucart_item.save()
         messages.success(request, 'Item added to cart.')
         return HttpResponseRedirect ("/")
@@ -122,6 +116,30 @@ def total_cartitems (request):
     template = loader.get_template("base.html")
     return HttpResponse(template.render(context, request))
 
+#this is the shopping cart items views associated with a specific logged in user.
+
+@login_required
+def view_cart_items (request):
+    user = request.user
+    #cartitems = []
+    #retrieving toppick items from the cart and then using the foreign key relationship to get all the properties of the pick
+    toppicks_in_cart = CartItems_toppick.objects.filter(cart_owner = user)
+    #for item in toppicks_in_cart:
+      #  toppicks_in_cart_photo = item.toppick_cart_product.pick_photo
+        #toppicks_in_cart_price = item.toppick_cart_product.pick_price
+       # toppicks_in_cart_description = item.toppick_cart_product.pick_description
+       
+
+    menu_items_in_cart = CartItems_menu.objects.filter(user_id = user)
+
+
+    template = loader.get_template("cart_items.html")
+    context = {
+        "toppicks_in_cart" : toppicks_in_cart,
+        "menu_items_in_cart": menu_items_in_cart,
+    }
+    return HttpResponse(template.render(context, request))
 
 
 
+ 

@@ -50,9 +50,24 @@ class Toppicks(models.Model):
     pick_price = models.DecimalField(max_digits=20, decimal_places=2,blank= False)
     def __str__(self):
        return self.pick_description
-    
-class CartItems(models.Model):
-    user_id = models.ForeignKey(User, on_delete = models.CASCADE)
-    toppick_product_id = models.ForeignKey(Toppicks, on_delete = models.CASCADE, null = True)
-    menu_pick = models.ForeignKey(Product, on_delete = models.CASCADE, null = True)
+    #table to store toppick items in the cart.
+class CartItems_toppick(models.Model):
+    cart_owner = models.ForeignKey(User, on_delete = models.CASCADE)
+    toppick_cart_product = models.ForeignKey(Toppicks, on_delete = models.CASCADE, null = True)
     quantity = models.PositiveIntegerField(default = 1)
+    
+    
+    #table to store main menu items in the cart.
+
+class CartItems_menu(models.Model):
+    user_id = models.ForeignKey(User, on_delete = models.CASCADE)
+    menu_product_id = models.ForeignKey(Product, on_delete = models.CASCADE, null = True)
+    quantity = models.PositiveIntegerField(default = 1)
+
+class checkout_information(models.Model):
+    user_id = models.ForeignKey(User, on_delete = models.CASCADE)
+    delivery_address = models.TextField(max_length = 250)
+    Card_number = models.CharField(max_length = 15)
+    Card_name = models.CharField(max_length = 200)
+    expiration_on_card = models.DateField()
+    Security_Code = models.PositiveIntegerField()
