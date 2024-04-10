@@ -7,6 +7,8 @@ urlpatterns = [
     path("toppick", views.toppick, name="toppick_details"),
     path("add_toppick_tocart", views.toppick_cart, name = "add_toppick_tocart"),
     path("add_menu_tocart", views.CartItem_menu, name = "add_menu_tocart"),
-    path("view_cart_items", views.view_cart_items, name = "view_cart_items")
+    path("view_cart_items", views.view_cart_items, name = "view_cart_items"),
+    path("client_checkout", views.client_checkout, name = "client_checkout"),
+    path("payment_success", views.payment_success, name="payment_success")
 
 ]

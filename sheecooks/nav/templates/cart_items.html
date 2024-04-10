@@ -15,16 +15,20 @@
                     </div>
                     <div class="checkout_div">
                         <p>Total ( Items)</p>
-                        <a href="checkout.html">
+                        <a href="{% url 'client_checkout'%}">
                             <button class="Proceed_To_Checkout">Proceed To Checkout</button>
                         </a>
                     </div>
-                    {% for item in toppicks_in_cart %}
+
+                    {% for id, inst in dicToppick.items %}
                         <div class="cart_item_display">
-                            <img src="{{item.toppick_cart_product.pick_photo.url}}" width="200px" height="200px"/>
-                            <p>{{item.toppick_cart_product.pick_description}}</p>
+                            <img src="{{inst.obj.toppick_cart_product.pick_photo.url}}" width="200px" height="200px"/>
+                            <p>{{inst.obj.toppick_cart_product.pick_description}}</p>
                             <div class="cart_price">
-                                <p>${{item.toppick_cart_product.pick_price}}</p>
+                                <p>${{inst.obj.toppick_cart_product.pick_price}}</p>
+                            </div>
+                            <div>
+                                <p>Qty:{{inst.count}}</p>
                             </div>
                         </div>
                         

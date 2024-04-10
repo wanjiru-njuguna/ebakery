@@ -2,10 +2,11 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 #from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect
+from django.shortcuts import render, redirect
 from django.contrib import messages
-from .models import Product, Splice_display, Toppicks, CartItems_menu,CartItems_toppick
-
+from .models import Product, Splice_display, Toppicks, CartItems_menu,CartItems_toppick,checkout_information
+from.forms import PaymentForm
+from collections import Counter
 # Create your views here.
 def nav (request):
     food_list = Product.objects.all()
@@ -121,25 +122,93 @@ def total_cartitems (request):
 @login_required
 def view_cart_items (request):
     user = request.user
-    #cartitems = []
-    #retrieving toppick items from the cart and then using the foreign key relationship to get all the properties of the pick
-    toppicks_in_cart = CartItems_toppick.objects.filter(cart_owner = user)
-    #for item in toppicks_in_cart:
-      #  toppicks_in_cart_photo = item.toppick_cart_product.pick_photo
-        #toppicks_in_cart_price = item.toppick_cart_product.pick_price
-       # toppicks_in_cart_description = item.toppick_cart_product.pick_description
-       
 
-    menu_items_in_cart = CartItems_menu.objects.filter(user_id = user)
+    cart_toppick = CartItems_toppick.objects.filter(cart_owner = user).all()
+    cart_menu = CartItems_menu.objects.filter(user_id = user).all()
+
+    # key = toppick_cart_product_id
+    # value = dictionary:
+    #           "obj" : item in the cart
+    #           "count" : how many times we saw this item in the cart
+    dicToppick = {}
+
+    for itm in cart_toppick:
+        id = itm.toppick_cart_product_id
+
+        if id in dicToppick:
+            dicToppick[id]["count"] += 1
+        else:
+            dicToppick[id] = {
+                "obj" : itm,
+                "count" : 1 
+            }
+
+    # # Convert it to an array
+    # arrRes = []
+    # for k, v in dicToppick:
+    #     arrRes.append(v)
 
 
+
+
+
+
+
+    for itm in cart_menu:
+        v = 0       # menu_product_id_id
+
+
+
+
+    toppicks_in_cart = CartItems_toppick.objects.filter(cart_owner = user).values('toppick_cart_product__id').distinct()
+    unique_toppicks_in_cart = []
+
+    for item in toppicks_in_cart:
+        product = CartItems_toppick.objects.get(id=item['toppick_cart_product__id'])
+        product_dictionary = {
+            'name':product.toppick_cart_product.pick_description,
+            'photo':product.toppick_cart_product.pick_photo.url,
+            'price':product.toppick_cart_product.pick_price,
+        }
+        unique_toppicks_in_cart.append(product_dictionary)
+
+    menu_items_in_cart = CartItems_menu.objects.filter(user_id = user).distinct()
+    #removing duplicates from the menu cart to show each item once.
+    #new_menu_items_in_cart =[]
+    #[new_menu_items_in_cart.append(item) for item in menu_items_in_cart if item not in new_menu_items_in_cart]
     template = loader.get_template("cart_items.html")
     context = {
-        "toppicks_in_cart" : toppicks_in_cart,
+        "unique_toppicks_in_cart" : unique_toppicks_in_cart,
         "menu_items_in_cart": menu_items_in_cart,
+        "dicToppick": dicToppick,
     }
     return HttpResponse(template.render(context, request))
+@login_required
+def client_checkout(request):
+    form = PaymentForm() 
+    if request.method == 'POST':
+        form = PaymentForm(request.POST)
+        template = loader.get_template('checkout.html')
+        if form.is_valid():
+            checkout_information.objects.create(
+                user_id = request.user,
+                delivery_address = form.cleaned_data['delivery_address'],
+                Card_number = form.cleaned_data['card_number'],
+                expiration_on_card = form.cleaned_data['expiry_date'],
+                Security_Code=form.cleaned_data['cvc_number']
+            )
+            return HttpResponseRedirect ("/payment_success")
+        else:
+            form = PaymentForm()
+        
+    return render(request, 'checkout.html',{'form': form} )    
 
 
-
- 
+@login_required
+def payment_success(request):
+    form = PaymentForm(request.POST)
+    template = loader.get_template("payment_success.html")
+    if request.method == 'GET':
+     return render(request, 'payment_success.html')  
+    return render(request, 'payment_success.html')
+  

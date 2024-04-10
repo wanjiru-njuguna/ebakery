@@ -6,18 +6,15 @@
 
 <body>
     <main>
-            {% block splice %}
-                <div class="exception_handler">
-                    <p>Add a Credit or Debit Card</p>
-                    <form>
-                        <input type="number" value="Card Number">
-                        <input type="text" value="Name on Card">
-                        <input type="month" value="expiry Month"> <input type="date">
-                        <input type="password" value="CVV / CVC">
-                    </form>
-                    
-                </div>
-            {% endblock %} 
-    
+        {% block splice%}
+        <div class="payment_field">
+            <form action="{% url 'client_checkout' %}" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="submit_payment">Submit Payment</button>
+            </form>
+        </div>
+            
+        {% endblock %}
     </main>
 </body>
