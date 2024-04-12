@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extrahead %}
+    
+{% endblock %}
+
+<body>
+    <main>
+            {% block splice %}
+                <div class="display_search_results">
+                    {% for item in results_toppick %}
+                        <img src="{{item.pick_photo.url}}" width="400px" height="400px"/>
+                        <p>{{item.pick_description}}</p>
+                        <p>$ {{item.pick_price}}</p>
+                        <button class="pick_add_to_cart">Add to Cart</button> <br>
+                        <button class="buy_now">Buy Now</button>
+
+                    {% endfor %}
+                    {% for item in results_menu %}
+                        <img src="{{item.photo.url}}" width="400px" height="400px"/>
+                        <p>{{item.product_name}}</p>
+                        <p>$ {{item.product_selling_price}}</p>
+                        <button class="pick_add_to_cart">Add to Cart</button> <br>
+                        <button class="buy_now">Buy Now</button>
+
+                    {% endfor %}
+
+                </div>
+
+            {% endblock %} 
+    
+    </main>
+</body>

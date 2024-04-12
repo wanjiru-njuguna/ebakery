@@ -19,33 +19,75 @@
   <script src="https://kit.fontawesome.com/c0de917e91.js" crossorigin="anonymous"></script>
  
   <div class="top_bar">
-    
-    <i class="fa-solid fa-bars"></i>
+    <div id="hidden_menu" class="hidden-menu">
+      <div class="reverse_toggle">
+        <i class="fa-solid fa-xmark fa-lg cancel_icon" id="cancel_hidden_div" class="hidden_m_text"></i>
+      </div>
+      <p class="hidden_m_text">Hello {{user.username}}</p>
+      <div class="hidden_menu_item">
+        <a href="{% url 'view_cart_items' %}" class="hidden_m_text">My Account</a>
+      </div>
+      <div class="hidden_menu_item">
+        <a href="/client_checkout" class="hidden_m_text">Free Delivery</a>
+      </div>
+      <div class="hidden_menu_item">
+        <a href="https://www.instagram.com/sheerohnjuguna_anatolyvech/" class="hidden_m_text">Contact Us</a>
+
+      </div>
+      <div class="hidden_menu_item">
+        <form action="{% url 'logout' %}" method="post">
+          {% csrf_token %}
+        <button type="submit" class="topbar_items">Log Out</button>
+      </form>
+      </div>
+
+  </div>
+  <div class="toggle_bars">
+    <i class="fa-solid fa-bars fa-lg" class="topbar_items" id="toggle_bars"></i>
+
+  </div>
     <a href="/">
-      <span class="sheeroh_foods">Sheeroh Foods</span>
+      <span class="sheeroh_foods" class="topbar_items">Sheeroh Foods</span>
 
     </a>
     <a href="/client_checkout">
-      <i class="fa-solid fa-truck" style="color: aliceblue;"><span>Free delivery</span></i>
+      <i class="fa-solid fa-truck fa-lg" class="topbar_items" style="color: aliceblue;"><span>Free delivery</span></i>
 
     </a>
-    <i class="fa-solid fa-magnifying-glass"><input placeholder="search foods"></input>
+    <span class="search_container">
+      <form id="search_form">
+        <input placeholder="search foods" id="search_bar"></input>
+        <button type="submit" id="submitButton" style="display: none;"></button>
+        <i id= "submiticon" class="fa-solid fa-magnifying-glass" onclick="document.getElementById('submitButton').click();"></i>
+
+      </form>
+    </span>
     </i>
-    <a href="view_cart_items">
-      <i class="fa-solid fa-cart-shopping" style="color: aliceblue;"></i>
-
-    </a>
+    <span class="cart_container">
+      <a href="view_cart_items">
+        <i class="fa-solid fa-cart-shopping fa-lg" class="topbar_items" style="color: aliceblue;"></i>
+        <span class="cart-count">{{aggregate_cart}}</span>
+  
+      </a>
+    </span>
+    
   {% block authentication %}
     {% if user.is_authenticated %}
-      <i class="fa fa-user" aria-hidden="true"> {{ user.username}} 
+    <span>
+      <i class="fa fa-user fa-lg" aria-hidden="true" class="topbar_items"> 
       </i>
-      <p><a href="{% url 'password_change'%}">password change</a></p>
+      <span>{{ user.username}} </span>
+
+    </span>
+      
       <form action="{% url 'logout' %}" method="post">
           {% csrf_token %}
-        <button type="submit">Log Out</button>
+        <button type="submit" class="topbar_items">Log Out</button>
       </form>
     {% else %}
-     <p><a href="{% url 'login' %}">Log In</a></p>
+     <p class="topbar_items"><a href="{% url 'login' %}">Log In</a></p>
+     <p class="topbar_items"><a href="{% url 'password_change'%}">password change</a></p>
+
      {% endif %}
 
   {% endblock %}
@@ -118,9 +160,10 @@
     
   </main>  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="{%  static 'splice.js' %}">
-    
+  <script src="{%  static 'splice.js' %}">    
   </script>
+  <script src="{%  static 'toogle.js' %}"></script>
+  <script src="{% static 'search.js'%}"></script>
 
 </body>
 

@@ -14,33 +14,39 @@
 
                     </div>
                     <div class="checkout_div">
-                        <p>Total ( Items)</p>
+                        <p>Total ({{aggregate_cart}} Items)</p>
                         <a href="{% url 'client_checkout'%}">
                             <button class="Proceed_To_Checkout">Proceed To Checkout</button>
                         </a>
                     </div>
 
-                    {% for id, inst in dicToppick.items %}
+                    {% for item in toppick_items_in_cart %}
                         <div class="cart_item_display">
-                            <img src="{{inst.obj.toppick_cart_product.pick_photo.url}}" width="200px" height="200px"/>
-                            <p>{{inst.obj.toppick_cart_product.pick_description}}</p>
+                            <img src="{{MEDIA_URL}}{{item.toppick_cart_product__pick_photo}}" width="200px" height="200px"/>
+                            <p>{{item.toppick_cart_product__pick_description}}</p>
                             <div class="cart_price">
-                                <p>${{inst.obj.toppick_cart_product.pick_price}}</p>
+                                <p>${{item.toppick_cart_product__pick_price}}</p>
                             </div>
                             <div>
-                                <p>Qty:{{inst.count}}</p>
+                                <p>Qty:{{item.number_items}}</p>
                             </div>
                         </div>
                         
 
                     {% endfor %}
-                    {% for item in menu_items_in_cart %}
+                    {% for menu in menu_items_in_cart %}
                         <div class="cart_item_display">
-                            <img src="{{item.menu_product_id.photo.url}}" width="200px" height="200px"/>
-                            <p>{{item.menu_product_id.product_name}}</p>
-                            <p>${{item.menu_product_id.product_selling_price}}</p>
-                        </div>
-                       
+                            <img src="{{MEDIA_URL}}{{menu.menu_product_id__photo}}" width="200px" height="200px"/>
+                            <p>{{menu.menu_product_id__product_name}}</p>
+                            <div class="cart_price">
+                                <p>${{menu.menu_product_id__product_selling_price}}</p>
+                            </div>
+                            <div>
+                                <p>Qty:{{menu.number_items}}</p>
+
+                            </div>
+
+                        </div>  
 
                     {% endfor %}
                 </div>
