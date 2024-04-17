@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   
   {% block extrahead %}
+  
   {% endblock %}
   <meta charset="utf-8">
   {% block title %}<title></title>{% endblock %}
@@ -55,21 +56,35 @@
 
     </a>
     <span class="search_container">
-      <form id="search_form">
-        <input placeholder="search foods" id="search_bar"></input>
+      <form id="search_form" action="{% url 'search'%}">
+        {% csrf_token %}
+        <input placeholder="search foods" id="search_bar" name="q"></input>
         <button type="submit" id="submitButton" style="display: none;"></button>
         <i id= "submiticon" class="fa-solid fa-magnifying-glass" onclick="document.getElementById('submitButton').click();"></i>
 
       </form>
     </span>
     </i>
-    <span class="cart_container">
-      <a href="view_cart_items">
-        <i class="fa-solid fa-cart-shopping fa-lg" class="topbar_items" style="color: aliceblue;"></i>
-        <span class="cart-count">{{aggregate_cart}}</span>
-  
-      </a>
-    </span>
+    {% block cart %}
+      {% if user.is_authenticated %}
+        <span class="cart_container">
+          <a href="view_cart_items">
+            <i class="fa-solid fa-cart-shopping fa-lg" class="topbar_items" style="color: aliceblue;"></i>
+            <span class="cart-count">{{total_menu_incart}}</span>
+      
+          </a>
+        </span>
+      {% else %}
+        <span class="cart_container">
+          <a href="view_cart_items">
+            <i class="fa-solid fa-cart-shopping fa-lg" class="topbar_items" style="color: aliceblue;"></i>
+      
+          </a>
+        </span>
+        {% endif %}
+    {% endblock%}
+
+    
     
   {% block authentication %}
     {% if user.is_authenticated %}
@@ -79,14 +94,15 @@
       <span>{{ user.username}} </span>
 
     </span>
-      
-      <form action="{% url 'logout' %}" method="post">
+      <a href="{% url 'logout' %}">Logout</a>
+      <!--<form action="{% url 'logout' %}" method="post">
           {% csrf_token %}
         <button type="submit" class="topbar_items">Log Out</button>
-      </form>
+      </form>-->
     {% else %}
-     <p class="topbar_items"><a href="{% url 'login' %}">Log In</a></p>
-     <p class="topbar_items"><a href="{% url 'password_change'%}">password change</a></p>
+  
+      <a href="{% url 'login' %}">Login</a>
+      <a href="{% url 'password_change' %}">Change password?</a>
 
      {% endif %}
 
@@ -107,15 +123,10 @@
 
     </div>
    
-    <div class="toppicks">
-      {% block toppicks%}
-
-       
-      {% endblock %}
-    </div>
-    
     <div class="main_menu">
       {% block menu%}
+
+       
       {% endblock %}
     </div>
 

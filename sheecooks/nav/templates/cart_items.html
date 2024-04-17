@@ -14,36 +14,51 @@
 
                     </div>
                     <div class="checkout_div">
-                        <p>Total ({{aggregate_cart}} Items)</p>
+                        <p>Total ({{total_menu_incart}} Items)</p>
                         <a href="{% url 'client_checkout'%}">
                             <button class="Proceed_To_Checkout">Proceed To Checkout</button>
                         </a>
                     </div>
-
-                    {% for item in toppick_items_in_cart %}
-                        <div class="cart_item_display">
-                            <img src="{{MEDIA_URL}}{{item.toppick_cart_product__pick_photo}}" width="200px" height="200px"/>
-                            <p>{{item.toppick_cart_product__pick_description}}</p>
-                            <div class="cart_price">
-                                <p>${{item.toppick_cart_product__pick_price}}</p>
-                            </div>
-                            <div>
-                                <p>Qty:{{item.number_items}}</p>
-                            </div>
-                        </div>
-                        
-
-                    {% endfor %}
+                    
                     {% for menu in menu_items_in_cart %}
                         <div class="cart_item_display">
-                            <img src="{{MEDIA_URL}}{{menu.menu_product_id__photo}}" width="200px" height="200px"/>
-                            <p>{{menu.menu_product_id__product_name}}</p>
+                            <img src="{{MEDIA_URL}}{{menu.cart_product_id__photo}}" width="200px" height="200px"/>
+                            <p>{{menu.cart_product_id__product_name}}</p>
                             <div class="cart_price">
-                                <p>${{menu.menu_product_id__product_selling_price}}</p>
+                                <p>${{menu.cart_product_id__product_selling_price}}</p>
                             </div>
                             <div>
-                                <p>Qty:{{menu.number_items}}</p>
+                                <p>Qty:{{menu.number_items}}</p> 
+                                <div class="add_or_remove_item">
+                                    <form id="plus_itembutton" method="post" action="{% url 'add_one_item_tocart'%}">
+                                       {% csrf_token %}
+                                        <input type="hidden" name="add_id" value="{{menu.cart_product_id__product_serial_no}}">
+                                        <input type="hidden" name="add_name" value="{{menu.cart_product_id__product_name}}">
+                                        <button type="submit">+</button>
+                                        
+                                    </form>
+                                    <form id="minus_itemfromcart" method="post" action="{% url 'reduce_cart_item_by_one'%}">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="minus_id" value="{{menu.cart_product_id__product_serial_no}}">
+                                        <input type="hidden" name="minus_name" value="{{menu.cart_product_id__product_name}}">
+                                        <button type="submit">-</button>
+                
+                                    </form>
+                                    
+                                   
 
+                                </div>
+
+                            </div>
+                            <div>
+                                <form id="remove_from_cart" method="post" action="{% url 'remove_from_cart'%}">
+
+                                    {% csrf_token %}
+                                    <input type="hidden" name="remove_id" value="{{menu.cart_product_id__product_serial_no}}">
+                                    <input type="hidden" name="remove_name" value="{{menu.cart_product_id__product_name}}">
+                                    <button type="submit" class="remove_from_cart">Remove from Cart</button>
+            
+                                </form>
                             </div>
 
                         </div>  

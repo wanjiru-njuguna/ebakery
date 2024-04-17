@@ -1,5 +1,17 @@
 {% extends "base.html" %}
 {% load static %}
+<head>
+    {% block cart %}
+        <span class="cart_container">
+          <a href="view_cart_items">
+            <i class="fa-solid fa-cart-shopping fa-lg" class="topbar_items" style="color: aliceblue;"></i>
+            <span class="cart-count">{{count_of_items}}</span>
+      
+          </a>
+        </span>
+    {% endblock%}
+
+</head>
 
 <body>
     <main>
@@ -14,38 +26,6 @@
             </div>
         {% endblock %}
 
-        {% block toppicks%}
-        
-            {% for pick in Top_food_picks %}
-            <div class="toppick_item">
-                <a href="/toppick?id={{pick.id}}">
-                    <img src="{{ pick.pick_photo.url }}" alt="{{pick.pick_description }}" width="250px" height="250px">
-                </a>
-                
-                <span>
-                    <a href="/toppick?id={{pick.id}}">
-                        <p> {{pick.pick_description }} </p>
-                    </a>
-                    <a href="/toppick?id={{pick.id}}">
-                        <p>$ {{pick.pick_price}}</p>
-                    </a>
-                    <form method="post" action="{% url 'add_toppick_tocart' %}">
-
-                        {% csrf_token %}
-                        <input type="hidden" name="pick_id" value="{{ pick.id}}">
-                        <input type="hidden" name="pick_name" value="{{pick.pick_description}}">
-                        <input type="hidden" name="quantity" value="1">
-                        <button type="submit" class="add_to_cart">Add to Cart</button>
-
-                    </form>
-
-                </span>
-            </div>
-            {% endfor %}
-            </ul>
-        
-        {% endblock %}
-        
         {% block menu%}
 
         {% for food in food_list %}
@@ -54,19 +34,18 @@
                     <img src="{{ food.photo.url }}" alt="{{food.product_name}}" width="250px" height="250px">
                 </a>
                 <div>
-                    <a href="product_details?product_serial_no={{food.product_serial_no}}">
+                    <a href="product_details?product_serial_no={{food.product_id}}">
                         <p> {{food.product_name}} </p>
                     </a>
-                    <a href="product_details?product_serial_no={{food.product_serial_no}}">
+                    <a href="product_details?product_serial_no={{food.product_id}}">
                         <p>$ {{food.product_selling_price}}</p>
                     </a>
 
-                    <form method="post" action="{% url 'add_menu_tocart' %}">
+                    <form id="add_to_cart" method="post" action="{% url 'add_items_tocart'%}">
 
                         {% csrf_token %}
                         <input type="hidden" name="food_id" value="{{food.product_serial_no}}">
                         <input type="hidden" name="food_name" value="{{food.product_name}}">
-                        <input type="hidden" name="quantity" value="1">
                         <button type="submit" class="add_to_cart">Add to Cart</button>
 
                     </form>
@@ -77,7 +56,8 @@
         </ul>
         
         {% endblock %}
-        
+        <script src="{% static 'add_tocart.js' %}"></script>
+  
         
     </main>
     

@@ -1,15 +1,17 @@
 from django.urls import path
-from . import views
+from . import views, remove_from_cart
 
 urlpatterns = [
     path("", views.nav, name="nav") ,
     path("product_details", views.product_details, name="product_details"),
-    path("toppick", views.toppick, name="toppick_details"),
-    path("add_toppick_tocart", views.toppick_cart, name = "add_toppick_tocart"),
-    path("add_menu_tocart", views.CartItem_menu, name = "add_menu_tocart"),
+    path("add_items_tocart", views.add_items_tocart, name = "add_items_tocart"),
     path("view_cart_items", views.view_cart_items, name = "view_cart_items"),
     path("client_checkout", views.client_checkout, name = "client_checkout"),
     path("payment_success", views.payment_success, name="payment_success"),
-    path('search', views.search, name='search')
-
+    path('search/', views.search, name='search'),
+    path("remove_from_cart", remove_from_cart.remove_items_from_cart, name="remove_from_cart"),
+    path("reduce_cart_item_by_one", remove_from_cart.reduce_cart_item_by_one, name="reduce_cart_item_by_one"),
+    path("add_one_item_tocart",remove_from_cart.add_one_item_tocart, name= "add_one_item_tocart"),
 ]
+
+

@@ -127,7 +127,9 @@ a p:hover {
     flex-direction: column;
 }
 .pick_add_to_cart{
-    margin-bottom: 0.3em;
+    margin-bottom: 0.1em;
+    width: 7em;
+    border-radius: 7px;
 }
 .menu_display{
     display: flex;
@@ -271,4 +273,27 @@ a p:hover {
   border-radius: 50%;
   padding: 4px;
   font-size: 18px;
+}
+.remove_from_cart{
+    background-color: orangered;
+    color: white;
+    border: black;
+    font-weight: bold;
+    font-size: small;
+    border-radius: 10px;
+    padding: 0.6em;
+
+}
+.display_search_results{
+    display: flex;
+    width: 80%;
+    justify-content: space-around;
+    flex-direction: column;
+    margin-top: 2em;
+    margin-left: 12em;
+}
+.buy_now{
+    margin-bottom: 4em;
+    width: 7em;
+    border-radius: 7px;
 }
