@@ -15,15 +15,17 @@ from .models import Product,Splice_display,Cart, checkout_information
 def nav (request):
     food_list = Product.objects.all()
     splice_images = Splice_display.objects.all()
-
-    # for vvv in Top_food_picks:
-    #     ttt = type(vvv)
-    #     v = 0
+    if request.user.is_authenticated:
+        user = request.user
+        no_of_items_in_cart = Cart.objects.filter(user_id = user).count()
+    else:
+        no_of_items_in_cart = 0
 
     template = loader.get_template("nav.html")
     context = {
         "food_list": food_list,
         "splice_images": splice_images,
+        "no_of_items_in_cart": no_of_items_in_cart
         }
     return HttpResponse(template.render(context, request))
 
@@ -96,12 +98,19 @@ def view_cart_items (request):
     }
     return HttpResponse(template.render(context, request))
 @login_required
+def count_cart_items (user):
+    no_of_items_in_cart = Cart.objects.filter(user_id = user).count()
+    return no_of_items_in_cart
+
+
+
+
+@login_required
 def client_checkout(request):
     form = PaymentForm() 
     if request.method == 'POST':
         form = PaymentForm(request.POST)
         template = loader.get_template('checkout.html')
-        no_of_cart_items = view_cart_items.total_menu_incart
         if form.is_valid():
             checkout_information.objects.create(
                 user_id = request.user,
@@ -112,8 +121,8 @@ def client_checkout(request):
             )
             return HttpResponseRedirect ("/payment_success")
         #checking that the cart is not empty
-        elif no_of_cart_items <= 0:
-            return HttpResponseRedirect ("/payment_failed")
+        # elif no_of_cart_items <= 0:
+        #     return HttpResponseRedirect ("/payment_failed")
 
         else:
             form = PaymentForm()

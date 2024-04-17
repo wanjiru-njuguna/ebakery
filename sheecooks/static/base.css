@@ -2,6 +2,10 @@
 body {
     margin: 0;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure full viewport height */
+
   }
 P{
     color: black;
@@ -32,7 +36,7 @@ a p:hover {
 .top_bar{
     color: white;
     background-color: #256D85;
-    width: 100%;
+    width: 100vw;
     height: 7%;
     display: flex;
     flex-direction: row;
@@ -40,7 +44,9 @@ a p:hover {
     vertical-align: middle;
     padding-top: 2%;
     align-content: space-between;
-    justify-content: space-around;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    
 }
 .splice_cover{
    /* height: 35em;*/
@@ -129,7 +135,7 @@ a p:hover {
 .pick_add_to_cart{
     margin-bottom: 0.1em;
     width: 7em;
-    border-radius: 7px;
+    border-radius: 0.438em;
 }
 .menu_display{
     display: flex;
@@ -176,7 +182,7 @@ a p:hover {
     flex-direction: column;
     align-items: end;
     margin-right: 4em;
-    border: 4px;
+    border: 0.25em;
     border-color: black;
 }
 .checkout_div p{
@@ -192,7 +198,7 @@ a p:hover {
     padding: 1em;
     font-weight: bold;
     font-size: medium;
-    border-radius: 10px;
+    border-radius: 0.625em;
 
 }
 .payment_field{
@@ -214,18 +220,39 @@ a p:hover {
     padding: 1em;
     font-weight: bold;
     font-size: medium;
-    border-radius: 10px;}
+    border-radius: 0.625em;}
 
 .form-control{
     margin-bottom: 1em;
 }
 .sheeroh_foods{
     color: aliceblue;
-    border: 5px solid transparent;
+    border: 0.313em solid transparent;
     font-size: larger;
 }
+
+.free_delivery{
+    color: aliceblue;
+    border: 0.313em solid transparent;
+    font-size: large;
+    font-family: sans-serif;
+    margin-left: 1em;
+}
 .topbar_items{
-    margin-bottom: 0.4em;
+    margin-bottom: 1em;
+    margin-right: 0.4em;
+}
+
+@media screen and (max-width: 600px) {
+    top_bar {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 3em;
+    }
+    top_bar * {
+        /* Styles to apply to all content inside the nav */
+        margin-top: 3em;
+    }
 }
 .hidden-menu{
     display: none;
@@ -234,8 +261,8 @@ a p:hover {
     left: 0;
     background-color:#256D85;
     color: antiquewhite;
-    padding: 10px;
-    border: 3px solid #ccc;
+    padding: 0.625em;
+    border: 0.188em solid #ccc;
     width: 23%;
     height: 100vh;
     z-index: 9999;
@@ -252,7 +279,7 @@ a p:hover {
 }
 #cancel_hidden_div{
     color: black;
-    width: 30px;
+    width: 1.875em;
    
 }
 .hidden_m_text{
@@ -296,4 +323,31 @@ a p:hover {
     margin-bottom: 4em;
     width: 7em;
     border-radius: 7px;
+}
+.login_form{
+    margin-bottom: 2em;
+    margin-left: 5em;
+}
+.login_heading{
+    margin-left: 2em;
+}
+input{
+    margin-bottom: 2em;
+}
+.password_reset{
+    margin-left: 2em;
+
+}
+.login_link{
+    color: white;
+}
+main {
+    flex: 1; /* Grow to fill remaining space */
+    padding: 1.25em; /* Example padding */
+}
+.toggle_bars{
+    margin-left: 1em;
+}
+#logout_button{
+    margin-right: 3em;
 }

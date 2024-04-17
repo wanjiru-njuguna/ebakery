@@ -14,8 +14,9 @@
   {% block extrahead %}
   
   {% endblock %}
-  <meta charset="utf-8">
-  {% block title %}<title></title>{% endblock %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}<title></title>{% endblock %}
   
   <script src="https://kit.fontawesome.com/c0de917e91.js" crossorigin="anonymous"></script>
  
@@ -52,7 +53,7 @@
 
     </a>
     <a href="/client_checkout">
-      <i class="fa-solid fa-truck fa-lg" class="topbar_items" style="color: aliceblue;"><span>Free delivery</span></i>
+      <i class="fa-solid fa-truck fa-lg" class="topbar_items" style="color: aliceblue;"><span class="free_delivery">Free delivery</span></i>
 
     </a>
     <span class="search_container">
@@ -68,9 +69,9 @@
     {% block cart %}
       {% if user.is_authenticated %}
         <span class="cart_container">
-          <a href="view_cart_items">
-            <i class="fa-solid fa-cart-shopping fa-lg" class="topbar_items" style="color: aliceblue;"></i>
-            <span class="cart-count">{{total_menu_incart}}</span>
+          <a href="{% url 'view_cart_items' %}">
+            <i class="fa-solid fa-cart-shopping fa-lg" class="topbar_items" style="color: aliceblue;"><span class="cart-count">{{no_of_items_in_cart}}</span>
+            </i>
       
           </a>
         </span>
@@ -94,15 +95,12 @@
       <span>{{ user.username}} </span>
 
     </span>
-      <a href="{% url 'logout' %}">Logout</a>
-      <!--<form action="{% url 'logout' %}" method="post">
+      <form action="{% url 'logout' %}" method="post">
           {% csrf_token %}
-        <button type="submit" class="topbar_items">Log Out</button>
-      </form>-->
+        <button type="submit" class="topbar_items" id="logout_button">Log Out</button>
+      </form>
     {% else %}
-  
-      <a href="{% url 'login' %}">Login</a>
-      <a href="{% url 'password_change' %}">Change password?</a>
+       <a href="{% url 'login' %}" class="login_link">Login</a>
 
      {% endif %}
 
@@ -129,8 +127,9 @@
        
       {% endblock %}
     </div>
-
-    <div class="footer">
+    
+  </main>  
+  <div class="footer">
     {% block btfooter%}
         <div class="ways_to_order">
           <h3>How to order</h3>
@@ -168,8 +167,6 @@
       
     </div>
     
-    
-  </main>  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="{%  static 'splice.js' %}">    
   </script>
