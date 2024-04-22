@@ -84,9 +84,7 @@ a p:hover {
     align-items: stretch;
     justify-content: space-evenly;
 }
-.toppick_item{
 
-}
 .add_to_cart{
     margin-top: 0;
     margin-bottom: 2em;
@@ -240,20 +238,20 @@ a p:hover {
 }
 .topbar_items{
     margin-bottom: 1em;
-    margin-right: 0.4em;
+    margin-right: 0;
 }
 
-@media screen and (max-width: 600px) {
+/* @media screen and (max-width: 600px) {
     top_bar {
         flex-direction: column;
         align-items: center;
         margin-top: 3em;
     }
     top_bar * {
-        /* Styles to apply to all content inside the nav */
+        /* Styles to apply to all content inside the nav 
         margin-top: 3em;
     }
-}
+}*/
 .hidden-menu{
     display: none;
     position: absolute;
@@ -340,14 +338,20 @@ input{
 }
 .login_link{
     color: white;
+    margin-right: 3em;
 }
 main {
     flex: 1; /* Grow to fill remaining space */
     padding: 1.25em; /* Example padding */
 }
 .toggle_bars{
-    margin-left: 1em;
+    margin-left: 2em;
 }
 #logout_button{
     margin-right: 3em;
+}
+.create_account_div{
+    margin-left: 2em;
+    margin-top: 2em;
+
 }
