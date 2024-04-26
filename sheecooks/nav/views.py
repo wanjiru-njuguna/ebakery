@@ -8,6 +8,7 @@ from.forms import PaymentForm
 from collections import Counter
 from django.db.models import Count
 from .models import Product,Splice_display,Cart, checkout_information
+from .decorators import redirect_to_login, no_null_items_checkout
 
 
 
@@ -28,6 +29,7 @@ def nav (request):
         "no_of_items_in_cart": no_of_items_in_cart
         }
     return HttpResponse(template.render(context, request))
+
 
 def product_details(request):
 
@@ -59,7 +61,8 @@ def product_details(request):
 
 
 #this is the function for adding the items to cart.
-@login_required
+#@login_required
+@redirect_to_login
 def add_items_tocart(request):
     if request.method == 'POST':
         menu_id = request.POST.get('food_id')
@@ -80,7 +83,7 @@ def add_items_tocart(request):
 
 #this is the shopping cart items views associated with a specific logged in user.
 
-@login_required
+@redirect_to_login
 def view_cart_items (request):
     user = request.user
     cart_menu = Cart.objects.filter(user_id = user).all()
@@ -97,7 +100,7 @@ def view_cart_items (request):
         "total_menu_incart": total_menu_incart,
     }
     return HttpResponse(template.render(context, request))
-@login_required
+@redirect_to_login
 def count_cart_items (user):
     no_of_items_in_cart = Cart.objects.filter(user_id = user).count()
     return no_of_items_in_cart
@@ -105,7 +108,8 @@ def count_cart_items (user):
 
 
 
-@login_required
+@redirect_to_login
+@no_null_items_checkout
 def client_checkout(request):
     form = PaymentForm() 
     if request.method == 'POST':
@@ -130,7 +134,7 @@ def client_checkout(request):
     return render(request, 'checkout.html',{'form': form} )    
 
 
-@login_required
+@redirect_to_login
 def payment_success(request):
     form = PaymentForm(request.POST)
     template = loader.get_template("payment_success.html")
@@ -152,3 +156,4 @@ def search (request):
         return render(request, 'search_results.html', context,)
     else:
         return render(request, 'search_results.html')
+
