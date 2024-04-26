@@ -11,8 +11,19 @@
                     <img src="{{food.photo.url}}" width="200px" height="200px"/>
                     <p>{{food.product_name}}</p>
                     <p>$ {{food.product_selling_price}}</p>
-                    <button class="pick_add_to_cart">Add to Cart</button> <br>
-                    <button class="buy_now">Buy Now</button>
+                    <form id="add_to_cart" method="post" action="{% url 'add_items_tocart'%}">
+
+                        {% csrf_token %}
+                        <input type="hidden" name="food_id" value="{{food.product_serial_no}}">
+                        <input type="hidden" name="food_name" value="{{food.product_name}}">
+                        <button type="submit" class="add_to_cart">Add to Cart</button>
+
+                    </form>
+
+                    <a href="/client_checkout">
+                        <button class="buy_now">Buy Now</button>
+
+                    </a>
 
                 </div>
             {% endblock %} 
