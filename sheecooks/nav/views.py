@@ -32,28 +32,23 @@ def nav (request):
 
 
 def product_details(request):
-
-    product_id = request.GET['product_serial_no'] #gets the id of the item from the users request.
-
     try:
-        item = Product.objects.get(product_serial_no =product_id)
+        product_id = request.GET['product_serial_no'] #gets the id of the item from the users request.
 
+        item = Product.objects.get(product_serial_no =product_id)
+        context = {
+        "prod_sn": product_id,
+        "food": item, }
         template = loader.get_template("product_details.html")
     except Exception as e:
-        # print(f"#EXCEPTION: {e}\n")
+        #print(f"#EXCEPTION: {e}\n")
         item = None
         context = {
             "error":e
         }
         template = loader.get_template("exception.html")
 
-    context = {
-        #"food_list": food_list,
-        #"splice_images": splice_images,
-        #"Top_food_picks": Top_food_picks,
-        "prod_sn": product_id,
-        "food": item,
-    }
+    
     return HttpResponse(template.render(context, request))
 
 
