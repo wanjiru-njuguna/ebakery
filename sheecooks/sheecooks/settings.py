@@ -24,25 +24,25 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-i=g98!ed5$69i55l91uih5u*q$l7c=&*#87f_rp@)e6iia*qtx'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://sheecooks.thisperfectmess.net/']
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'debug_toolbar',
-    'django_browser_reload',
-    'nav.apps.NavConfig',
-    'accounts.apps.AccountsConfig',
+    #'debug_toolbar',
+    #'django_browser_reload',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'corsheaders',
+    'corsheaders', 
+    'nav.apps.NavConfig',
+    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [
@@ -92,6 +92,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+        'USER': 'Sheeroh',        
+        'PASSWORD': '30556301005',
+        'HOST': 'mysql',
+        'PORT': '3306',
     }
 }
 

@@ -1,0 +1,361 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure full viewport height */
+
+  }
+P{
+    color: black;
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+    margin: 0.4em;
+}
+a{
+    text-decoration: none;
+}
+a p:hover {
+    color: red;
+  }
+/*a:-webkit-any-link
+{
+    color: blue;
+}*/
+.footer p{
+    color: white;
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+    margin: 0.3em;
+
+}
+
+.top_bar{
+    color: white;
+    background-color: #256D85;
+    width: 100vw;
+    height: 7%;
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    vertical-align: middle;
+    padding-top: 2%;
+    align-content: space-between;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    
+}
+.splice_cover{
+   /* height: 35em;*/
+}
+.item{
+    height: 35em;
+    width: 100%;
+
+}
+
+.owl-carousel .owl-item img{
+    max-width: auto;
+    max-height: 94%;
+    width: auto;
+    height: auto;
+    overflow: auto;
+    padding: 0;
+    margin: 0;
+}
+.splice_des_paragraph{
+    margin: 0.5em 0.5em;
+}
+.toppicks{
+    color: white;
+    width: 100%;
+    /*height: 30%;*/
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 2.5em;
+    margin-bottom: 0.5em;
+    vertical-align: middle;
+    padding-top: 2%;
+    align-content: space-between;
+    align-items: stretch;
+    justify-content: space-evenly;
+}
+
+.add_to_cart{
+    margin-top: 0;
+    margin-bottom: 2em;
+}
+.main_menu{
+    color: white;
+    width: 100%;
+    /*height: 80%;*/
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0;
+    vertical-align: middle;
+    padding-top: 2%;
+    align-content: space-between;
+    justify-content: space-evenly;
+}
+.footer{
+    background-color: #256D85;
+    color: white;
+    width: 100%;
+    /*height: 25em;*/
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    vertical-align: middle;
+    padding-top: 2%;
+    justify-content: space-evenly;
+
+    
+}
+.ways_to_order{
+    margin-left: 1em;
+}
+
+.social_icons{
+    margin: 2em 2em;
+}
+.pick_display{
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    /*height: 100vh;*/
+    flex-direction: column;
+}
+.pick_add_to_cart{
+    margin-bottom: 0.1em;
+    width: 7em;
+    border-radius: 0.438em;
+}
+.menu_display{
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh;
+    flex-direction: column;
+}
+.Cart_display{
+    margin-left: 3em;
+    display: flex;
+    justify-content: flex-start; 
+    align-items: flex-start; 
+    flex-direction: column;
+}
+.cart_item_display{
+    display: flex;
+    width: 80%;
+    justify-content: space-around;
+    flex-direction: row;
+    margin-top: 2em;
+
+}
+.header_span{
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    justify-items: flex-end;
+}
+.price_span{
+    margin-right: 9em;
+    font-weight: bold;
+}
+.cart_price{
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    
+}
+.checkout_div{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: end;
+    margin-right: 4em;
+    border: 0.25em;
+    border-color: black;
+}
+.checkout_div p{
+    margin-right: 4em;
+
+}
+.Proceed_To_Checkout{
+    margin-right: 4em;
+    margin-top: 2em;
+    background-color: orangered;
+    color: white;
+    border: black;
+    padding: 1em;
+    font-weight: bold;
+    font-size: medium;
+    border-radius: 0.625em;
+
+}
+.payment_field{
+    margin-top: 3em;
+    margin-bottom: 15em;
+    margin-left: 3em;
+}
+.payment_success{
+    margin-top: 3em;
+    margin-bottom: 20em;
+    margin-left: 3em;
+}
+.submit_payment{
+    margin-right: 4em;
+    margin-top: 2em;
+    background-color: orangered;
+    color: white;
+    border: black;
+    padding: 1em;
+    font-weight: bold;
+    font-size: medium;
+    border-radius: 0.625em;}
+
+.form-control{
+    margin-bottom: 1em;
+}
+.sheeroh_foods{
+    color: aliceblue;
+    border: 0.313em solid transparent;
+    font-size: larger;
+}
+
+.free_delivery{
+    color: aliceblue;
+    border: 0.313em solid transparent;
+    font-size: large;
+    font-family: sans-serif;
+    margin-left: 1em;
+}
+.topbar_items{
+    margin-bottom: 1em;
+    margin-right: 0;
+}
+
+/* @media screen and (max-width: 600px) {
+    top_bar {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 3em;
+    }
+    top_bar * {
+        /* Styles to apply to all content inside the nav 
+        margin-top: 3em;
+    }
+}*/
+.hidden-menu{
+    display: none;
+    position: absolute;
+    top: 0px; /* Adjust top position as needed */
+    left: 0;
+    background-color:#256D85;
+    color: antiquewhite;
+    padding: 0.625em;
+    border: 0.188em solid #ccc;
+    width: 23%;
+    height: 100vh;
+    z-index: 9999;
+}
+.hidden_menu_item{
+    margin-bottom: 3em;
+    margin-top: 1em;
+}
+.reverse_toggle{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+
+}
+#cancel_hidden_div{
+    color: black;
+    width: 1.875em;
+   
+}
+.hidden_m_text{
+    color: aliceblue;
+
+}
+.cancel_icon::before{
+    color: #ccc;
+}
+.cart_container{
+    position: relative;
+}
+.cart-count{
+  position: absolute;
+  top: -26px;
+  right: -3px;
+  color: white;
+  border-radius: 50%;
+  padding: 4px;
+  font-size: 18px;
+}
+.remove_from_cart{
+    background-color: orangered;
+    color: white;
+    border: black;
+    font-weight: bold;
+    font-size: small;
+    border-radius: 10px;
+    padding: 0.6em;
+
+}
+.display_search_results{
+    display: flex;
+    width: 80%;
+    justify-content: space-around;
+    flex-direction: column;
+    margin-top: 2em;
+    margin-left: 12em;
+}
+.buy_now{
+    margin-bottom: 1em;
+    width: 7em;
+    border-radius: 7px;
+}
+.login_form{
+    margin-bottom: 2em;
+    margin-left: 5em;
+}
+.login_heading{
+    margin-left: 2em;
+}
+input{
+    margin-bottom: 2em;
+}
+.password_reset{
+    margin-left: 2em;
+
+}
+.login_link{
+    color: white;
+    margin-right: 3em;
+}
+main {
+    flex: 1; /* Grow to fill remaining space */
+    padding: 1.25em; /* Example padding */
+}
+.toggle_bars{
+    margin-left: 2em;
+}
+#logout_button{
+    margin-right: 3em;
+}
+.create_account_div{
+    margin-left: 2em;
+    margin-top: 2em;
+
+}
+.errorlist{
+    color: red;
+    font-weight: bold;
+}
