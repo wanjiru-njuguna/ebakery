@@ -16,3 +16,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the project code into the container at /app
 COPY . /app/
+
+EXPOSE 8000
+# Run Django development server
+CMD ["python3", "manage.py", "runserver"]
