@@ -31,10 +31,10 @@ urlpatterns = [
     #path('profile', views.profile, name='profile'),
 ]
 urlpatterns += staticfiles_urlpatterns()
-if settings.DEBUG:
-    import debug_toolbar
-    urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
-    urlpatterns += staticfiles_urlpatterns()
-    urlpatterns = [    path("__debug__/", include("debug_toolbar.urls")),
-]+ urlpatterns
+#if settings.DEBUG:
+    #import debug_toolbar
+urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+urlpatterns += staticfiles_urlpatterns()
+    #urlpatterns = [    path("__debug__/", include("debug_toolbar.urls")),
+#]+ urlpatterns
 
