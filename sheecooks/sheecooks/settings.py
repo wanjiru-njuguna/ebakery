@@ -151,3 +151,6 @@ INTERNAL_IPS = [
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+CSRF_TRUSTED_ORIGINS = ['https://ebakery-2.onrender.com/']
+
+CSRF_COOKIE_DOMAIN = 'ebakery-2.onrender.com/'
