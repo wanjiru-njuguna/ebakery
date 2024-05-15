@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-i=g98!ed5$69i55l91uih5u*q$l7c=&*#87f_rp@)e6iia*qtx
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ebakery-2.onrender.com', '127.0.0.1']
 
 
 # Application definition
