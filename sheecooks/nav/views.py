@@ -71,7 +71,7 @@ def add_items_tocart(request):
 
     menucart_item = Cart(user_id = request.user, cart_product_id = menu_item)
     menucart_item.save()
-    messages.success(request, 'Item added to cart.')
+    #messages.success(request, 'Item added to cart.')
     return HttpResponseRedirect ("/")
 
 

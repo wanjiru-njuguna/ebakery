@@ -22,7 +22,7 @@ def remove_items_from_cart(request):
             return redirect('view_cart_items')
         #item_to_remove = menu_item
         menu_item.delete()
-        messages.success(request, 'Item removed from cart.')
+        #messages.success(request, 'Item removed from cart.')
     return HttpResponseRedirect ("view_cart_items")
 
 @login_required
