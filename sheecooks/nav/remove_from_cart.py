@@ -16,7 +16,7 @@ def remove_items_from_cart(request):
         food_id = request.POST.get('remove_id')
         food_name = request.POST.get('remove_name')
         try:
-            menu_item = Cart.objects.get(cart_product_id__product_serial_no = food_id)
+            menu_item = Cart.objects.filter(cart_product_id__product_serial_no = food_id)
 
         except Cart.DoesNotExist:
             return redirect('view_cart_items')
